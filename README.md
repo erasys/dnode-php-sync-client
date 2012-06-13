@@ -14,12 +14,38 @@ for more complex support of dnode protocol.
 Usage
 -----
 
+Lets first start simple node.js server exposing `echo` method over dnode:
+
+```javascript
+var dnode = require('dnode');
+var port = process.argv[2] || 8080;
+dnode({
+  echo: function (data, callback) {
+    callback(null, data);
+  }
+}).listen(port);
+```
+
+Now, we can call this echo method from PHP like this:
+
 ```php
 <?php
 require_once "dnode-php-sync-client/DnodeSyncClient.php";
 $dnode = new \DnodeSyncClient\Dnode();
-$connection = $dnode->connect('localhost', 5050);
-$response = $connection->call('methodName', array('argument1', 'argument2'));
+$connection = $dnode->connect('localhost', 8080);
+$response = $connection->call('echo', array('Hello, world!'));
+var_dump($response);
+```
+
+Result:
+
+```
+array(2) {
+  [0] =>
+  NULL
+  [1] =>
+  string(13) "Hello, world!"
+}
 ```
 
 Requirements
@@ -31,12 +57,12 @@ Requirements
 Run tests
 ---------
 
-To run all tests, just run 'phpunit .' from the main directory.
+To run all tests, just run `phpunit .` from the main directory.
 
-_test/DnodeTest.php is integration test which needs dnode echo service running.
-Sources for this test service are in _test/node directory. You need to first 
-install dnode dependency by running "npm install ." inside that directory.
-Once dnode is installed, DnodeTest.php will start the echo service on port
+`_test/DnodeTest.php` is integration test which needs dnode echo server running.
+Sources for this test server are in `_test/node` directory. You need to first 
+install dnode dependency by running `npm install .` from directory `_test/dnode`.
+Once dnode is installed, `DnodeTest.php` will start the echo service on port
 8080 when necessary.
 
 The usual
