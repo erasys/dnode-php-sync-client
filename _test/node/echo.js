@@ -5,10 +5,7 @@
  * @copyright 2012 erasys GmbH - see ../LICENSE.txt for more info
  */
 var dnode = require('dnode');
-
-var port = process.argv[2];
-
-
+var port = process.argv[2] || 8080;
 dnode({
   echo: function (data, callback) {
     callback(null, data);
