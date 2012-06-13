@@ -1,0 +1,9 @@
+{
+  "name": "echo",
+  "version": "1.0.0",
+  "description": "Simple echo dnode service",
+  "author": "erasys GmbH",
+  "dependencies": {
+    "dnode": "0.9.x"
+  }
+}
