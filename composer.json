@@ -1,0 +1,28 @@
+{
+  "name": "erasys/dnode-php-sync-client",
+  "type": "library",
+  "description": "Minimalistic dnode client for PHP",
+  "keywords": ["Erasys", "dnode", "PHP"],
+  "homepage": "https://github.com/erasys/dnode-php-sync-client",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Erasys GmbH",
+      "email": "teams@erasys.de"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://composer.adam/"
+    },
+    {
+      "packagist": false
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0",
+    "phpunit/phpunit": ">=3.6.0"
+  },
+  "autoload": {}
+}
