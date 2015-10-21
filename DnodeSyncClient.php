@@ -43,19 +43,20 @@ class Dnode {
    *
    * @param string $host
    * @param string $port
-   * @param float $connectTimeout Number of seconds until `connect()` should timeout. 
+   * @param bool|float $connectTimeout Number of seconds until `connect()` should timeout.
    *                              Default: `ini_get("default_socket_timeout")`
    *
-   * @return \DnodeSyncClient\Connection
-   *
-   * @throws \DnodeSyncClient\IOException
-   * @throws \DnodeSyncClient\ProtocolException
+   * @param bool $timeout
+   * @return Connection
    */
-  public function connect($host, $port, $connectTimeout = false) {
+  public function connect($host, $port, $connectTimeout = false, $timeout = false) {
     $address = "tcp://$host:$port";
     $stream = $connectTimeout ?
                 @\stream_socket_client($address, $error, $errorMessage, $connectTimeout) :
                 @\stream_socket_client($address, $error, $errorMessage);
+    if ($timeout) {
+      stream_set_timeout($stream, $timeout);
+    }
     if (!$stream) {
       throw new IOException("Can't create socket to $address. Error: $error $errorMessage");
     }
