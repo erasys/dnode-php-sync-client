@@ -32,6 +32,11 @@ class MethodNotExistsException extends Exception {}
 class ConnectionClosedException extends Exception {}
 
 /**
+ * Thrown when calling method on closed connection
+ */
+class ConnectionTimeoutException extends Exception {}
+
+/**
  * Main Dnode client class
  *
  * This is the only class you should instantiate directly from your code.
@@ -43,19 +48,20 @@ class Dnode {
    *
    * @param string $host
    * @param string $port
-   * @param float $connectTimeout Number of seconds until `connect()` should timeout. 
+   * @param bool|float $connectTimeout Number of seconds until `connect()` should timeout.
    *                              Default: `ini_get("default_socket_timeout")`
    *
-   * @return \DnodeSyncClient\Connection
-   *
-   * @throws \DnodeSyncClient\IOException
-   * @throws \DnodeSyncClient\ProtocolException
+   * @param bool $timeout
+   * @return Connection
    */
-  public function connect($host, $port, $connectTimeout = false) {
+  public function connect($host, $port, $connectTimeout = false, $timeout = false) {
     $address = "tcp://$host:$port";
     $stream = $connectTimeout ?
                 @\stream_socket_client($address, $error, $errorMessage, $connectTimeout) :
                 @\stream_socket_client($address, $error, $errorMessage);
+    if ($timeout) {
+      stream_set_timeout($stream, $timeout);
+    }
     if (!$stream) {
       throw new IOException("Can't create socket to $address. Error: $error $errorMessage");
     }
@@ -94,6 +100,10 @@ class Connection {
     // write our (empty) methods description
     fputs($this->stream, json_encode(array("method" => "methods")) ."\n");
 
+    $streamMeta = stream_get_meta_data($stream);
+    if ($streamMeta['timed_out'] === true) {
+      throw new ConnectionTimeoutException("Connection timed out");
+    }
     // read remote methods
     $line = fgets($this->stream);
     if ($line === false) {
