@@ -6,7 +6,7 @@
  * @copyright 2012 erasys GmbH - see ./LICENSE.txt for more info
  */
 
-namespace Erasys\DnodeSyncClient\Exception;
+namespace uuf6429\DnodeSyncClient\Exception;
 
 /**
  * Base class for all exceptions thrown by this library.

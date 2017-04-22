@@ -6,7 +6,7 @@
  * @copyright 2012 erasys GmbH - see ./LICENSE.txt for more info
  */
 
-namespace Erasys\DnodeSyncClient;
+namespace uuf6429\DnodeSyncClient;
 
 /**
  * Connection to dnode service.

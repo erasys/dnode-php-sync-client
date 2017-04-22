@@ -3,8 +3,8 @@ dnode-php-sync-client
 
 [![Build Status (TravisCI)](https://travis-ci.org/uuf6429/dnode-php-sync-client.svg?branch=master)](https://travis-ci.org/uuf6429/dnode-php-sync-client)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg)](https://php.net/)
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/erasys/dnode-php-sync-client/blob/master/LICENSE.txt)
-[![Packagist](https://img.shields.io/packagist/v/erasys/dnode-php-sync-client.svg)](https://packagist.org/packages/erasys/dnode-php-sync-client)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/uuf6429/dnode-php-sync-client/blob/master/LICENSE.txt)
+[![Packagist](https://img.shields.io/packagist/v/uuf6429/dnode-php-sync-client.svg)](https://packagist.org/packages/uuf6429/dnode-php-sync-client)
 
 
 Minimalistic [dnode](https://github.com/substack/dnode) client for PHP, supports only synchronous calling of methods on remote server.
@@ -37,7 +37,7 @@ Now, we can call this echo method from PHP like this:
 ```php
 <?php
 require_once 'vendor/autoload.php';
-$dnode = new \Erasys\DnodeSyncClient\Dnode();
+$dnode = new \uuf6429\DnodeSyncClient\Dnode();
 $connection = $dnode->connect('localhost', 8080);
 $response = $connection->call('echo', array('Hello, world!'));
 var_dump($response);

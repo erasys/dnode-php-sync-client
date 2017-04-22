@@ -1,6 +1,6 @@
 <?php
 
-namespace Erasys\DnodeSyncClient;
+namespace uuf6429\DnodeSyncClient;
 
 class ConnectionTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,9 +1,14 @@
 <?php
 
-namespace Erasys\DnodeSyncClient;
+namespace uuf6429\DnodeSyncClient;
 
 class TestStreamWrapperTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var TestStreamWrapper
+     */
+    private $wrapper;
+
     public function setUp()
     {
         $this->wrapper = new TestStreamWrapper();

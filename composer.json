@@ -1,11 +1,15 @@
 {
-  "name": "erasys/dnode-php-sync-client",
+  "name": "uuf6429/dnode-php-sync-client",
   "type": "library",
   "description": "Minimalistic dnode client for PHP",
   "keywords": ["Erasys", "dnode", "PHP"],
-  "homepage": "https://github.com/erasys/dnode-php-sync-client",
+  "homepage": "https://github.com/uuf6429/dnode-php-sync-client",
   "license": "BSD-3-Clause",
   "authors": [
+    {
+      "name": "Christian Sciberras",
+      "email": "christian@sciberras.me"
+    },
     {
       "name": "Erasys GmbH",
       "email": "teams@erasys.de"
@@ -20,12 +24,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Erasys\\DnodeSyncClient\\": "src/Erasys/DnodeSyncClient/"
+      "uuf6429\\DnodeSyncClient\\": "src/uuf6429/DnodeSyncClient/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Erasys\\DnodeSyncClient\\": "tests/"
+      "uuf6429\\DnodeSyncClient\\": "tests/"
     }
   }
 }
