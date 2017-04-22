@@ -1,6 +1,12 @@
 dnode-php-sync-client
 =====================
 
+[![Build Status (TravisCI)](https://travis-ci.org/uuf6429/dnode-php-sync-client.svg?branch=master)](https://travis-ci.org/uuf6429/dnode-php-sync-client)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg)](https://php.net/)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/uuf6429/dnode-php-sync-client/blob/master/LICENSE.txt)
+[![Packagist](https://img.shields.io/packagist/v/uuf6429/dnode-php-sync-client.svg)](https://packagist.org/packages/uuf6429/dnode-php-sync-client)
+
+
 Minimalistic [dnode](https://github.com/substack/dnode) client for PHP, supports only synchronous calling of methods on remote server.
 
 * It can call method on remote dnode server and it can receive response.
@@ -14,7 +20,7 @@ for more complex support of dnode protocol.
 Usage
 -----
 
-Lets first start simple node.js server exposing `echo` method over dnode:
+Let's first start with a simple node.js server exposing `echo` method over dnode:
 
 ```javascript
 var dnode = require('dnode');
@@ -30,8 +36,8 @@ Now, we can call this echo method from PHP like this:
 
 ```php
 <?php
-require_once "dnode-php-sync-client/DnodeSyncClient.php";
-$dnode = new \DnodeSyncClient\Dnode();
+require_once 'vendor/autoload.php';
+$dnode = new \uuf6429\DnodeSyncClient\Dnode();
 $connection = $dnode->connect('localhost', 8080);
 $response = $connection->call('echo', array('Hello, world!'));
 var_dump($response);
@@ -48,24 +54,16 @@ array(2) {
 }
 ```
 
-Requirements
-------------
-
-* php 5.3 - namespaces are used
-* phpunit - tests were written with phpunit 3.6
-
 Run tests
 ---------
 
-To run all tests, just run `phpunit .` from the main directory.
+To run all tests, just run `./vendor/bin/phpunit` from the main directory.
 
-`_test/DnodeTest.php` is integration test which needs dnode echo server running.
-Sources for this test server are in `_test/node` directory. You need to first 
-install dnode dependency by running `npm install .` from directory `_test/dnode`.
-Once dnode is installed, `DnodeTest.php` will start the echo service on port
-8080 when necessary.
+`tests/DnodeTest.php` is integration test which needs dnode echo server running.
+Sources for this test server are in `tests/node` directory.
+The test suite will automatically install npm dependencies and start the echo service on port 8080 when necessary.
 
 The usual
 ---------
 
-We are [hiring](http://www.erasys.de/public/front_content.php?idcat=9)!
+We are [hiring](http://www.erasys.de/jobs/)!
