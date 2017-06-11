@@ -14,17 +14,35 @@ Minimalistic [dnode](https://github.com/substack/dnode) client for PHP, supports
 * It does not support full [dnode-protocol](https://github.com/substack/dnode-protocol) - response
    from remote server must not contain any callbacks or links section.
 
-Look at [dnode-php](https://github.com/bergie/dnode-php) if you are looking
-for more complex support of dnode protocol.
+Look at [dnode-php](https://github.com/bergie/dnode-php) for a more complex support of dnode protocol.
 
-Usage
------
+
+## Table Of Contents
+
+- [dnode-php-sync-client](#dnode-php-sync-client)
+  - [Table Of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+
+
+## Installation
+
+The recommended and easiest way to install Rune is through [Composer](https://getcomposer.org/):
+
+```bash
+composer require uuf6429/dnode-php-sync-client "~2.0"
+```
+
+
+## Usage
 
 Let's first start with a simple node.js server exposing `echo` method over dnode:
 
 ```javascript
 var dnode = require('dnode');
 var port = process.argv[2] || 8080;
+
 dnode({
   echo: function (data, callback) {
     callback(null, data);
@@ -36,16 +54,19 @@ Now, we can call this echo method from PHP like this:
 
 ```php
 <?php
+
 require_once 'vendor/autoload.php';
+
 $dnode = new \uuf6429\DnodeSyncClient\Dnode();
 $connection = $dnode->connect('localhost', 8080);
 $response = $connection->call('echo', array('Hello, world!'));
+
 var_dump($response);
 ```
 
 Result:
 
-```
+```php
 array(2) {
   [0] =>
   NULL
@@ -54,16 +75,11 @@ array(2) {
 }
 ```
 
-Run tests
----------
+
+## Run tests
 
 To run all tests, just run `./vendor/bin/phpunit` from the main directory.
 
-`tests/DnodeTest.php` is integration test which needs dnode echo server running.
-Sources for this test server are in `tests/node` directory.
+_Note:_ `tests/DnodeTest.php` is an integration test which needs dnode echo server running. Sources for this test server are in `tests/node` directory.
+
 The test suite will automatically install npm dependencies and start the echo service on port 8080 when necessary.
-
-The usual
----------
-
-We are [hiring](http://www.erasys.de/jobs/)!
